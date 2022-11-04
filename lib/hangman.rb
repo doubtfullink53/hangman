@@ -16,13 +16,13 @@ class Main
   def draw_board
     canvas = Drawille::Canvas.new
 
-    def draw(canvas, img, xoffset = 0)
+    def draw(canvas , img , xoffset = 50)
       (0..img.dimension.width - 1).each do |x|
         (0..img.dimension.height - 1).each do |y|
           r = Color.r(img[x, y])
           g = Color.g(img[x, y])
           b = Color.b(img[x, y])
-          canvas.set(x + xoffset, y) if (r + b + g) > 100
+          canvas.set(x + xoffset, y) if (r + b + g) > 400
         end
       end
     end
