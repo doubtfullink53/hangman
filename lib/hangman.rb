@@ -44,7 +44,11 @@ class Main
       puts @hidden_word
       @number += 1
       draw_board
-    elsif @word.include?(@guess)
+    elsif !@word.include?(@guess)
+      puts "wrong letter"
+      @number += 1
+      draw_board
+    else
       puts @hidden_word = @word.chars.map { |c| @guess_array.include?(c) ? c : ' _ ' }.join
     end
     guess_again
@@ -65,12 +69,13 @@ class Main
     end
 
     if @hidden_word == @word
-      @number = 0
+      
       puts 'You Won!!!!'
       puts 'Do you want to play again YES (N) or NO (N)?'
       playagain = STDIN.gets.chomp
 
       if playagain.downcase == 'y' || playagain.downcase == 'yes'
+        @number = 0
         start
       else
         exit
