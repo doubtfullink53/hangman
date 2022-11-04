@@ -1,16 +1,16 @@
 require 'drawille'
 require 'chunky_png'
 
-include ChunkyPNG
-
 class Main
+  include ChunkyPNG
+
   def initialize
     @number = 0
   end
 
   def secret_word
     words = File.read('google-10000-english-no-swears.txt').split
-     @word = words.select { |w| w.size > 5 && w.size < 12 }.sample # secret word 
+    @word = words.select { |w| w.size > 5 && w.size < 12 }.sample # secret word
   end
 
   def draw_board
@@ -45,7 +45,7 @@ class Main
       @number += 1
       draw_board
     elsif !@word.include?(@guess)
-      puts "wrong letter"
+      puts 'wrong letter'
       @number += 1
       draw_board
     else
@@ -57,7 +57,9 @@ class Main
   def end_of_game
     if @number == 6
       @number = 0
+
       puts 'You lost!'
+      puts "Secret word was: #{@word}"
       puts 'Do you want to play again YES (N) or NO (N)?'
       playagain = STDIN.gets.chomp
 
@@ -69,7 +71,7 @@ class Main
     end
 
     if @hidden_word == @word
-      
+
       puts 'You Won!!!!'
       puts 'Do you want to play again YES (N) or NO (N)?'
       playagain = STDIN.gets.chomp
